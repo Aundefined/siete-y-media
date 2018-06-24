@@ -1,18 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MazoService} from './_servicios/mazo.service'
 
 
 import { AppComponent } from './app.component';
+import { SieteYMediaComponent } from './siete-y-media/siete-y-media.component';
+
+import { appRouting } from './app.routing';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SieteYMediaComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    appRouting
   ],
-  providers: [],
+  providers: [
+    MazoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
