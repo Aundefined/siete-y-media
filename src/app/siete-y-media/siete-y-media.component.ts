@@ -12,33 +12,56 @@ import { Cartas } from '../_modelos/cartas';
 })
 export class SieteYMediaComponent implements OnInit {
 
-  mazo:Cartas[];
-  cartasTiradas:Cartas[] = [];
-  carta:Cartas;
-  puntosJugador:number = 0;
-  puntosMaquina:number = 0;
+  mazo: Cartas[];
+  cartasTiradasJugador: Cartas[] = [];
+  cartasTiradasBanca: Cartas[] = [];
+  carta: Cartas;
+  puntosJugador: number = 0;
+  puntosBanca: number = 0;
+  inter:any;
 
 
-  constructor(private mazoService:MazoService) {}
+  constructor(private mazoService: MazoService) { }
 
   ngOnInit() {
     this.mazo = this.mazoService.getMazo();
     this.mazoService.shuffle(this.mazo);
   }
 
-  pedir(){
+  pedir() {
     this.carta = this.mazo.pop();
-    this.cartasTiradas.push(this.carta);
+    this.cartasTiradasJugador.push(this.carta);
     this.puntosJugador += this.carta.valor;
     // console.log(this.puntosJugador);
   }
 
+  stop(){
+    clearInterval(this.inter);
+  }
+
+  start(){
+    this.carta = this.mazo.pop();
+    this.cartasTiradasBanca.push(this.carta);
+    this.puntosBanca += this.carta.valor;
+  }
+
+  juegaBanca() {
+    this.inter = setInterval(() => {
+      this.start();
+     }, 2000);
+    // if(this.puntosBanca > 7.5){
+    //     this.stop();
+    //  }
+  }
+
+  stopp(){
+    this.stop();
+  }
+
+    
 
 
-  
 
 
+  }
 
-  
-
-}

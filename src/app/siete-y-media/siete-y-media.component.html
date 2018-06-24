@@ -1,19 +1,39 @@
-
-  <div class="row up"></div>
-  <div class="row down">
-    <div class="row primera">
-      <div class="col col-md-1"></div>
-      <div class="col col-md-3">
-          <button class="btn btn-info" (click)="pedir()">Pedir carta</button>
-      </div>
-      <div  class="col col-md-8">
-       <p class="puntos"> Puntos jugador : {{puntosJugador}}</p>
+<div class="row">
+  <div class="col col-md-12">
+    <div class="row row-div">
+      <div class="col col-md-12">
+        <div class="row pedir">
+          <div class="col col-md-2">
+              <button class="btn" (click)="stopp()">Stop</button>
+          </div>
+          <div class="col col-md-10"><span class="puntos">Puntos banca : {{puntosBanca}}</span></div>
+        </div>
+        <div class="row cartas">
+          <div class="col col-md-2"></div>
+          <div class="col col-md-8">
+            <img *ngFor="let carta of cartasTiradasBanca" src="{{carta.imagen}}" alt="">
+          </div>
+          <div class="col col-md-2"></div>
+        </div>
       </div>
     </div>
-    <div class="row segunda">
-      <div  class="col col-md-12">
-        <img *ngFor="let carta of cartasTiradas" src="{{carta.imagen}}" alt="">
+    <div class="row row-div">
+      <div class="col col-md-12">
+        <div class="row pedir">
+          <div class="col col-md-2">
+            <button class="btn" (click)="juegaBanca()">Pedir carta</button>
+          </div>
+          <div class="col col-md-10"><span class="puntos">Puntos jugador : {{puntosJugador}}</span></div>
+        </div>
+        <div class="row cartas">
+          <div class="col col-md-2"></div>
+          <div class="col col-md-8">
+            <img *ngFor="let carta of cartasTiradasJugador" src="{{carta.imagen}}" alt="">
+          </div>
+          <div class="col col-md-2"></div>
+        </div>
       </div>
     </div>
   </div>
-
+</div>
+  

@@ -9,8 +9,6 @@ img{
      -ms-animation: fadein 2s; /* Internet Explorer */
       -o-animation: fadein 2s; /* Opera < 12.1 */
          animation: fadein 2s;
-
-    
 }
 
 @keyframes fadein {
@@ -45,36 +43,22 @@ img{
 .row{
  background-color: green;
  border:1px solid white;
- width:100%;
- margin:0;
- padding:0;
 }
 
-.col{
-    border:1px solid white;
-    margin:0;
-    padding:0;
+.cartas{
+    height:400px;
 }
 
-.up{
-    height: 350px;
-    border-bottom: 1px solid white;
+.row-div{
+    height:340px;
 }
 
-.down{
-    height:350px;
+.pedir{
+    height:55px;
 }
 
-.primera{
-    height:60px;
-    margin-bottom:0px;
-}
-
-.segunda{
-    height:200px;
-    margin-top:0px;
-}
-
+.col{border:1px solid white;}
+    
 .puntos{
     color:white;
 }
