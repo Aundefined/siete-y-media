@@ -1,9 +1,19 @@
-<div class="container">
-  <div class="row verde">
-   <div class="col-md-12 up"></div>
-   <div class="col-md-12 down">
-     <div class="row sep">
-     </div>
-   </div>
+
+  <div class="row up"></div>
+  <div class="row down">
+    <div class="row primera">
+      <div class="col col-md-1"></div>
+      <div class="col col-md-3">
+          <button class="btn btn-info" (click)="pedir()">Pedir carta</button>
+      </div>
+      <div  class="col col-md-8">
+       <p class="puntos"> Puntos jugador : {{puntosJugador}}</p>
+      </div>
+    </div>
+    <div class="row segunda">
+      <div  class="col col-md-12">
+        <img *ngFor="let carta of cartasTiradas" src="{{carta.imagen}}" alt="">
+      </div>
+    </div>
   </div>
-</div>
+

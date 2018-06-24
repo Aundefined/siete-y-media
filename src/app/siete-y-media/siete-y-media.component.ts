@@ -12,15 +12,30 @@ import { Cartas } from '../_modelos/cartas';
 })
 export class SieteYMediaComponent implements OnInit {
 
-  Mazo:Cartas[];
+  mazo:Cartas[];
+  cartasTiradas:Cartas[] = [];
+  carta:Cartas;
+  puntosJugador:number = 0;
+  puntosMaquina:number = 0;
 
-  constructor(private mazoService:MazoService) { 
-    this.Mazo = this.mazoService.getMazo();
-  }
+
+  constructor(private mazoService:MazoService) {}
 
   ngOnInit() {
-    this.mazoService.shuffle(this.Mazo);
+    this.mazo = this.mazoService.getMazo();
+    this.mazoService.shuffle(this.mazo);
   }
+
+  pedir(){
+    this.carta = this.mazo.pop();
+    this.cartasTiradas.push(this.carta);
+    this.puntosJugador += this.carta.valor;
+    // console.log(this.puntosJugador);
+  }
+
+
+
+  
 
 
 

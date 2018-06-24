@@ -30,55 +30,55 @@ export class MazoService {
       {
         "palo": "bastos",
         "carta": "1",
-        "valor": 0.5,
+        "valor": 1,
         "imagen": "../assets/bastos_1.jpg"
       },
       {
         "palo": "bastos",
         "carta": "2",
-        "valor": 0.5,
+        "valor": 2,
         "imagen": "../assets/bastos_2.jpg"
       },
       {
         "palo": "bastos",
         "carta": "3",
-        "valor": 0.5,
+        "valor": 3,
         "imagen": "../assets/bastos_3.jpg"
       },
       {
         "palo": "bastos",
         "carta": "4",
-        "valor": 0.5,
+        "valor": 4,
         "imagen": "../assets/bastos_4.jpg"
       },
       {
         "palo": "bastos",
         "carta": "5",
-        "valor": 0.5,
+        "valor": 5,
         "imagen": "../assets/bastos_5.jpg"
       },
       {
         "palo": "bastos",
         "carta": "6",
-        "valor": 0.5,
+        "valor": 6,
         "imagen": "../assets/bastos_6.jpg"
       },
       {
         "palo": "bastos",
         "carta": "7",
-        "valor": 0.5,
+        "valor": 7,
         "imagen": "../assets/bastos_7.jpg"
       },
       {
         "palo": "bastos",
         "carta": "8",
-        "valor": 0.5,
+        "valor": 8,
         "imagen": "../assets/bastos_8.jpg"
       },
       {
         "palo": "bastos",
         "carta": "9",
-        "valor": 0.5,
+        "valor": 9,
         "imagen": "../assets/bastos_9.jpg"
       },
 
