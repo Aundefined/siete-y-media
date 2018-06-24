@@ -1,3 +1,23 @@
 .img{
     display:inline;
 }
+
+.verde{
+ background-color: green;
+ height:700px;
+}
+
+.up{
+    height: 350px;
+   
+    border-bottom: 1px solid white;
+}
+
+.down{
+    height:350px;
+}
+
+.sep{
+    height:120px;
+    border:1px solid blue;
+}
