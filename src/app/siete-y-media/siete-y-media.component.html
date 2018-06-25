@@ -27,7 +27,7 @@
           <div class="col-md-2"><span class="puntos">Fondos : {{fondos}}</span> <span class="puntos">Apuesta : {{apuestaEnCurso}}</span></div>
           <div class="col-md-2">
             <select [disabled]="!boolApuesta" name="fondos" (change)="apostar($event.target.value)">
-              <option>Seleccione apuesta</option>
+              <option [value]=0>Seleccione apuesta</option>
               <option [value]=10>10</option>
               <option [value]=20>20</option>
               <option [value]=30>30</option>
