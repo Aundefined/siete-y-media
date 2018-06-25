@@ -1,87 +1,40 @@
 import { Injectable } from '@angular/core';
 import { Cartas } from '../_modelos/cartas';
+import { Bastos } from '../_modelos/bastos';
 
 @Injectable()
 export class MazoService {
 
   Mazo: Cartas[];
+  
+  reyBastos = new Bastos("../assets/bastos_12.jpg", "rey", 0.5);
+  caballoBastos = new Bastos("../assets/bastos_11.jpg", "caballo", 0.5);
+  sotaBastos = new Bastos("../assets/bastos_10.jpg", "sota", 0.5);
+  unoBastos = new Bastos("../assets/bastos_1.jpg", "1", 1);
+  dosBastos = new Bastos("../assets/bastos_2.jpg", "2", 2);
+  tresBastos = new Bastos("../assets/bastos_3.jpg", "3", 3);
+  cuatroBastos = new Bastos("../assets/bastos_4.jpg", "4", 4);
+  cincoBastos = new Bastos("../assets/bastos_5.jpg", "5", 5);
+  seisBastos = new Bastos("../assets/bastos_6.jpg", "6", 6);
+  sieteBastos = new Bastos("../assets/bastos_7.jpg", "7", 7);
+  ochoBastos = new Bastos("../assets/bastos_8.jpg", "8", 8);
+  nueveBastos = new Bastos("../assets/bastos_9.jpg", "9", 9);
 
   constructor() {
 
     this.Mazo = [
-      {
-        "palo": "bastos",
-        "carta": "rey",
-        "valor": 0.5,
-        "imagen": "../assets/bastos_12.jpg"
-      },
-      {
-        "palo": "bastos",
-        "carta": "caballero",
-        "valor": 0.5,
-        "imagen": "../assets/bastos_11.jpg"
-      },
-      {
-        "palo": "bastos",
-        "carta": "sota",
-        "valor": 0.5,
-        "imagen": "../assets/bastos_10.jpg"
-      },
-      {
-        "palo": "bastos",
-        "carta": "1",
-        "valor": 1,
-        "imagen": "../assets/bastos_1.jpg"
-      },
-      {
-        "palo": "bastos",
-        "carta": "2",
-        "valor": 2,
-        "imagen": "../assets/bastos_2.jpg"
-      },
-      {
-        "palo": "bastos",
-        "carta": "3",
-        "valor": 3,
-        "imagen": "../assets/bastos_3.jpg"
-      },
-      {
-        "palo": "bastos",
-        "carta": "4",
-        "valor": 4,
-        "imagen": "../assets/bastos_4.jpg"
-      },
-      {
-        "palo": "bastos",
-        "carta": "5",
-        "valor": 5,
-        "imagen": "../assets/bastos_5.jpg"
-      },
-      {
-        "palo": "bastos",
-        "carta": "6",
-        "valor": 6,
-        "imagen": "../assets/bastos_6.jpg"
-      },
-      {
-        "palo": "bastos",
-        "carta": "7",
-        "valor": 7,
-        "imagen": "../assets/bastos_7.jpg"
-      },
-      {
-        "palo": "bastos",
-        "carta": "8",
-        "valor": 8,
-        "imagen": "../assets/bastos_8.jpg"
-      },
-      {
-        "palo": "bastos",
-        "carta": "9",
-        "valor": 9,
-        "imagen": "../assets/bastos_9.jpg"
-      },
-
+      this.reyBastos,
+      this.caballoBastos,
+      this.sotaBastos,
+      this.unoBastos,
+      this.dosBastos,
+      this.tresBastos,
+      this.cuatroBastos,
+      this.cincoBastos,
+      this.seisBastos,
+      this.sieteBastos,
+      this.ochoBastos,
+      this.nueveBastos
     ]
   }
 

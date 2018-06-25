@@ -22,6 +22,7 @@ export class SieteYMediaComponent implements OnInit {
   puntosBanca: number = 0;
   inter: any;
   plantarse: boolean = false;
+  pedirCarta: boolean = true;
 
 
   constructor(private mazoService: MazoService) { }
@@ -46,6 +47,14 @@ export class SieteYMediaComponent implements OnInit {
     }
   }
 
+  juegaBanca() {
+    this.plantarse = false;
+    this.pedirCarta = false;
+    this.inter = setInterval(() => {
+      this.start();
+    }, 1500);
+  }
+
   start() {
     this.carta = this.mazo.pop();
     this.cartasTiradasBanca.push(this.carta);
@@ -58,12 +67,6 @@ export class SieteYMediaComponent implements OnInit {
       this.stop();
       this.ganar();
     }
-  }
-
-  juegaBanca() {
-    this.inter = setInterval(() => {
-      this.start();
-    }, 1500);
   }
 
   perder() {
@@ -79,6 +82,7 @@ export class SieteYMediaComponent implements OnInit {
       this.cartasTiradasJugador = [];
       this.cartasTiradasBanca = [];
       this.plantarse = false;
+      this.pedirCarta = true;
     }, 500);
 
   }
@@ -96,19 +100,12 @@ export class SieteYMediaComponent implements OnInit {
       this.cartasTiradasJugador = [];
       this.cartasTiradasBanca = [];
       this.plantarse = false;
+      this.pedirCarta = true;
     }, 500);
   }
 
   stop() {
     clearInterval(this.inter);
   }
-
-
-
-
-
-
-
-
 }
 
