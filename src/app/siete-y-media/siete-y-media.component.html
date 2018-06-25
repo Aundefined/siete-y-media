@@ -4,7 +4,6 @@
       <div class="col col-md-12">
         <div class="row pedir">
           <div class="col col-md-2">
-              <button class="btn" (click)="juegaBanca()">Stop</button>
           </div>
           <div class="col col-md-10"><span class="puntos">Puntos banca : {{puntosBanca}}</span></div>
         </div>
@@ -22,6 +21,7 @@
         <div class="row pedir">
           <div class="col col-md-2">
             <button class="btn" (click)="pedir()">Pedir carta</button>
+            <button [disabled]="!plantarse" class="btn" (click)="juegaBanca()">Plantarse</button>
           </div>
           <div class="col col-md-10"><span class="puntos">Puntos jugador : {{puntosJugador}}</span></div>
         </div>
