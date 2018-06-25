@@ -22,7 +22,9 @@ export class SieteYMediaComponent implements OnInit {
   puntosBanca: number = 0;
   inter: any;
   plantarse: boolean = false;
-  pedirCarta: boolean = true;
+  pedirCarta: boolean = false;
+  fondos:number = 100;
+  apuesta:number;
 
 
   constructor(private mazoService: MazoService) { }
@@ -30,6 +32,12 @@ export class SieteYMediaComponent implements OnInit {
   ngOnInit() {
     this.mazo = this.mazoService.getMazo();
     this.mazoService.shuffle(this.mazo);
+  }
+
+  apostar(value){
+    this.pedirCarta = true;
+    this.apuesta = value;
+    this.fondos -= this.apuesta;
   }
 
   pedir() {
@@ -82,7 +90,7 @@ export class SieteYMediaComponent implements OnInit {
       this.cartasTiradasJugador = [];
       this.cartasTiradasBanca = [];
       this.plantarse = false;
-      this.pedirCarta = true;
+      this.pedirCarta = false;
     }, 500);
 
   }
@@ -100,7 +108,8 @@ export class SieteYMediaComponent implements OnInit {
       this.cartasTiradasJugador = [];
       this.cartasTiradasBanca = [];
       this.plantarse = false;
-      this.pedirCarta = true;
+      this.pedirCarta = false;
+      this.fondos += (this.apuesta * 2);
     }, 500);
   }
 
