@@ -18,7 +18,7 @@ export class SieteYMediaComponent implements OnInit {
   carta: Cartas;
   puntosJugador: number = 0;
   puntosBanca: number = 0;
-  inter:any;
+  inter: any;
 
 
   constructor(private mazoService: MazoService) { }
@@ -35,33 +35,39 @@ export class SieteYMediaComponent implements OnInit {
     // console.log(this.puntosJugador);
   }
 
-  stop(){
+  stop() {
     clearInterval(this.inter);
   }
 
-  start(){
+  start() {
     this.carta = this.mazo.pop();
     this.cartasTiradasBanca.push(this.carta);
     this.puntosBanca += this.carta.valor;
+    if(this.puntosBanca > this.puntosJugador){
+      this.stop();
+    }
   }
 
   juegaBanca() {
     this.inter = setInterval(() => {
       this.start();
-     }, 2000);
+    }, 2000);
     // if(this.puntosBanca > 7.5){
     //     this.stop();
     //  }
+
   }
 
-  stopp(){
+  stopp() {
     this.stop();
   }
 
-    
+  
 
 
 
 
-  }
+
+
+}
 
