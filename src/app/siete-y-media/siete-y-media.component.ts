@@ -98,7 +98,7 @@ export class SieteYMediaComponent implements OnInit {
       this.cartasTiradasJugador = [];
       this.cartasTiradasBanca = [];
       this.plantarse = false;
-      this.pedirCarta = true;
+      this.pedirCarta = false;
       this.boolApuesta = true;
       this.apuestaEnCurso = 0;
     }, 500);
@@ -118,7 +118,7 @@ export class SieteYMediaComponent implements OnInit {
       this.cartasTiradasJugador = [];
       this.cartasTiradasBanca = [];
       this.plantarse = false;
-      this.pedirCarta = true;
+      this.pedirCarta = false;
       this.boolApuesta = true;
       this.fondos += (this.apuestaEnCurso * 2);
       this.apuestaEnCurso = 0;
