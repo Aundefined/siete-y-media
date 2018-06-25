@@ -24,9 +24,9 @@
             <button [disabled]="!plantarse" class="btn" (click)="juegaBanca()">Plantarse</button>
           </div>
           <div class="col col-md-6"><span class="puntos">Puntos jugador : {{puntosJugador}}</span></div>
-          <div class="col-md-2">Fondos : {{fondos}}</div>
+          <div class="col-md-2"><span class="puntos">Fondos : {{fondos}}</span> <span class="puntos">Apuesta : {{apuestaEnCurso}}</span></div>
           <div class="col-md-2">
-            <select name="fondos" (change)="apostar($event.target.value)">
+            <select [disabled]="!boolApuesta" name="fondos" (change)="apostar($event.target.value)">
               <option>Seleccione apuesta</option>
               <option [value]=10>10</option>
               <option [value]=20>20</option>
