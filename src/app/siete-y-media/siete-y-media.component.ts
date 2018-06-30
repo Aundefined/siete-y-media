@@ -39,6 +39,7 @@ export class SieteYMediaComponent implements OnInit {
   divperder: boolean = false;
   divperderfondos: boolean = false;
 
+  // Realizamos una inyección de dependencia ya que necesitaremos las funciones del servicio MazoService.
   constructor(private mazoService: MazoService) { }
 
   ngOnInit() {
@@ -53,7 +54,7 @@ export class SieteYMediaComponent implements OnInit {
       case 10:
         // Comprobamos que los fondos son suficientes para realizar la apuesta.
         if (this.fondos >= 10) {
-          // Habilitmaos el botón para pedir carta.
+          // Habilitmaos el botón de pedir carta.
           this.pedirCarta = true;
           // Asignamos el valor de la apuesta.
           this.apuesta = 10;
@@ -184,7 +185,7 @@ export class SieteYMediaComponent implements OnInit {
     this.plantarse = false;
     this.pedirCarta = false;
     this.boolApuesta = false;
-    // Uso del setTimeout para dar tiempo a ver la cartas.
+    // Uso del setTimeout para poder ver las cartas antes de que se active la función.
     setTimeout(() => {
       // Evaluamos si le quedan fondos al jugador.
       // Si no le quedan,se acaba la partida y se reinician los fondos.
