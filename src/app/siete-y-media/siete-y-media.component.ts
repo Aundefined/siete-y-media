@@ -18,15 +18,21 @@ export class SieteYMediaComponent implements OnInit {
   cartasTiradasJugador: Cartas[] = [];
   cartasTiradasBanca: Cartas[] = [];
   carta: Cartas;
+
   puntosJugador: number = 0;
   puntosBanca: number = 0;
+  fondos: number = 100;
+  apuestaEnCurso: number = 0;
+
   inter: any;
+  apuesta: any;
+
   plantarse: boolean = false;
   pedirCarta: boolean = false;
-  boolApuesta:boolean = true;
-  fondos:number = 100;
-  apuesta:any;
-  apuestaEnCurso:number = 0;
+  boolApuesta: boolean = true;
+
+
+
 
 
   constructor(private mazoService: MazoService) { }
@@ -36,7 +42,7 @@ export class SieteYMediaComponent implements OnInit {
     this.mazoService.shuffle(this.mazo);
   }
 
-  apostar(value){
+  apostar(value) {
     console.log(value);
     this.pedirCarta = true;
     this.apuesta = value;
@@ -88,19 +94,37 @@ export class SieteYMediaComponent implements OnInit {
   perder() {
     setTimeout(() => {
 
-      alert('has perdido');
-      this.puntosJugador = 0;
-      this.puntosBanca = 0;
-      this.mazoInit = this.cartasTiradasBanca.concat(this.cartasTiradasJugador);
-      this.mazoInit2 = this.mazo.concat(this.mazoInit);
-      this.mazo = this.mazoInit2;
-      this.mazoService.shuffle(this.mazo);
-      this.cartasTiradasJugador = [];
-      this.cartasTiradasBanca = [];
-      this.plantarse = false;
-      this.pedirCarta = false;
-      this.boolApuesta = true;
-      this.apuestaEnCurso = 0;
+      if (this.fondos <= 0) {
+        alert('has perdido todos tus fondos');
+        this.fondos = 100;
+        this.puntosJugador = 0;
+        this.puntosBanca = 0;
+        this.mazoInit = this.cartasTiradasBanca.concat(this.cartasTiradasJugador);
+        this.mazoInit2 = this.mazo.concat(this.mazoInit);
+        this.mazo = this.mazoInit2;
+        this.mazoService.shuffle(this.mazo);
+        this.cartasTiradasJugador = [];
+        this.cartasTiradasBanca = [];
+        this.plantarse = false;
+        this.pedirCarta = false;
+        this.boolApuesta = true;
+        this.apuestaEnCurso = 0;
+      } else {
+        alert('has perdido');
+        this.puntosJugador = 0;
+        this.puntosBanca = 0;
+        this.mazoInit = this.cartasTiradasBanca.concat(this.cartasTiradasJugador);
+        this.mazoInit2 = this.mazo.concat(this.mazoInit);
+        this.mazo = this.mazoInit2;
+        this.mazoService.shuffle(this.mazo);
+        this.cartasTiradasJugador = [];
+        this.cartasTiradasBanca = [];
+        this.plantarse = false;
+        this.pedirCarta = false;
+        this.boolApuesta = true;
+        this.apuestaEnCurso = 0;
+
+      }
     }, 500);
 
   }
