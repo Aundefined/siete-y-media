@@ -1,4 +1,5 @@
 
+
 img{
     height:170px;
     width:120px;
@@ -42,7 +43,7 @@ img{
 
 .row{
  background-color: green;
- border:1px solid white;
+ /* border:1px solid white; */
 }
 
 .cartas{
@@ -57,10 +58,14 @@ img{
     height:55px;
 }
 
-.col{border:1px solid white;}
+/* .col{border:1px solid white;} */
     
 .puntos{
     color:white;
+}
+
+.continuar{
+    margin-left:20px;
 }
 
 

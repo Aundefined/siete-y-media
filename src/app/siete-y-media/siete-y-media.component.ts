@@ -30,6 +30,9 @@ export class SieteYMediaComponent implements OnInit {
   plantarse: boolean = false;
   pedirCarta: boolean = false;
   boolApuesta: boolean = true;
+  divganar:boolean = false;
+  divperder:boolean = false;
+  divperderFondos:boolean = false;
 
 
 
@@ -43,20 +46,70 @@ export class SieteYMediaComponent implements OnInit {
   }
 
   apostar(value) {
-    console.log(value);
-    this.pedirCarta = true;
-    this.apuesta = value;
-    this.apuestaEnCurso += parseInt(this.apuesta);
-    console.log(this.apuesta);
-    this.fondos -= parseInt(this.apuesta);
 
-    if (this.fondos <= 0){
-      this.boolApuesta = false;
+    switch (value) {
+      case 10:
+        if (this.fondos >= 10) {
+          this.pedirCarta = true;
+          this.apuesta = 10;
+          this.apuestaEnCurso += this.apuesta;
+          this.fondos -= this.apuesta;
+          if (this.fondos == 0) {
+            this.boolApuesta = false;
+          }
+        } else {
+          alert('fondos insuficientes');
+        }
+
+        break;
+
+      case 20:
+        if (this.fondos >= 20) {
+          this.pedirCarta = true;
+          this.apuesta = 20;
+          this.apuestaEnCurso += this.apuesta;
+          this.fondos -= this.apuesta;
+          if (this.fondos == 0) {
+            this.boolApuesta = false;
+          }
+        } else {
+          alert('fondos insuficientes');
+        }
+        break;
+
+      case 30:
+        if (this.fondos >= 30) {
+          this.pedirCarta = true;
+          this.apuesta = 30;
+          this.apuestaEnCurso += this.apuesta;
+          this.fondos -= this.apuesta;
+          if (this.fondos == 0) {
+            this.boolApuesta = false;
+          }
+        } else {
+          alert('fondos insuficientes');
+        }
+        break;
+
+      case 50:
+        if (this.fondos >= 50) {
+          this.pedirCarta = true;
+          this.apuesta = 50;
+          this.apuestaEnCurso += this.apuesta;
+          this.fondos -= this.apuesta;
+          if (this.fondos == 0) {
+            this.boolApuesta = false;
+          }
+        } else {
+          alert('fondos insuficientes');
+        }
+        break;
     }
+
   }
 
   pedir() {
-    this.apuesta = "0";
+    // this.apuesta = "0";
     this.boolApuesta = true;
     this.plantarse = true;
     this.carta = this.mazo.pop();
@@ -89,9 +142,13 @@ export class SieteYMediaComponent implements OnInit {
       this.stop();
       this.perder();
     }
-    if (this.puntosBanca > this.puntosJugador && this.puntosBanca > 7.5) {
+    else if (this.puntosBanca > this.puntosJugador && this.puntosBanca > 7.5) {
       this.stop();
       this.ganar();
+    }
+    else if (this.puntosBanca == this.puntosJugador) {
+      this.stop();
+      this.perder();
     }
   }
 
@@ -100,7 +157,6 @@ export class SieteYMediaComponent implements OnInit {
 
       if (this.fondos <= 0) {
 
-        alert('has perdido todos tus fondos');
         this.fondos = 100;
         this.puntosJugador = 0;
         this.puntosBanca = 0;
@@ -114,9 +170,9 @@ export class SieteYMediaComponent implements OnInit {
         this.pedirCarta = false;
         this.boolApuesta = true;
         this.apuestaEnCurso = 0;
+        this.divperderFondos = true;
       } else {
 
-        alert('has perdido');
         this.puntosJugador = 0;
         this.puntosBanca = 0;
         this.mazoInit = this.cartasTiradasBanca.concat(this.cartasTiradasJugador);
@@ -129,6 +185,7 @@ export class SieteYMediaComponent implements OnInit {
         this.pedirCarta = false;
         this.boolApuesta = true;
         this.apuestaEnCurso = 0;
+        this.divperder = true;
 
       }
     }, 500);
@@ -138,7 +195,6 @@ export class SieteYMediaComponent implements OnInit {
   ganar() {
     setTimeout(() => {
 
-      alert('has ganado');
       this.puntosJugador = 0;
       this.puntosBanca = 0;
       this.mazoInit = this.cartasTiradasBanca.concat(this.cartasTiradasJugador);
@@ -152,8 +208,21 @@ export class SieteYMediaComponent implements OnInit {
       this.boolApuesta = true;
       this.fondos += (this.apuestaEnCurso * 2);
       this.apuestaEnCurso = 0;
+      this.divganar = true;
 
     }, 500);
+  }
+
+  chngDivGanar(){
+    this.divganar = false;
+  }
+
+  chngDivPerder(){
+    this.divperder = false;
+  }
+
+  chngDivPerderFondos(){
+    this.divperderFondos = false;
   }
 
   stop() {
