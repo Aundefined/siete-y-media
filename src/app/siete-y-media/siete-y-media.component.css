@@ -1,8 +1,6 @@
-
-
 img{
-    height:170px;
-    width:120px;
+    height:190px;
+    width:140px;
     margin:10px;
 
     -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
@@ -43,22 +41,28 @@ img{
 
 .row{
  background-color: green;
- /* border:1px solid white; */
 }
 
 .cartas{
     height:400px;
 }
 
-.row-div{
-    height:340px;
+.division-up{
+    height:250px;
+}
+
+.division-down{
+    height:250px;
+    margin-top:25px
+}
+
+.espacio{
+    height: 40px;
 }
 
 .pedir{
     height:55px;
 }
-
-/* .col{border:1px solid white;} */
     
 .puntos{
     color:white;

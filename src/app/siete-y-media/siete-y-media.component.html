@@ -1,62 +1,87 @@
-<div class="row">
-  <div class="col col-md-12">
-    <div class="row row-div">
-      <div class="col col-md-12">
-        <div class="row pedir">
-          <div class="col col-md-3">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col col-md-12">
+      <div class="row">
+        <div class="col-md-12 espacio"></div>
+      </div>
+      <div class="row">
+        <div class="col division-up col-md-12">
+          <div class="row pedir">
+            <div class="col col-md-4">
+            </div>
+            <div class="col col-md-8">
+              <span class="puntos">Puntos banca : {{puntosBanca}}</span>
+            </div>
           </div>
-          <div class="col col-md-9">
-            <span class="puntos">Puntos banca : {{puntosBanca}}</span>
+          <div class="row cartas">
+            <div class="col col-md-2"></div>
+            <div [hidden]="divganar || divperder || divperderFondos" class="col col-md-8">
+              <img *ngFor="let carta of cartasTiradasBanca" src="{{carta.imagen}}" alt="">
+            </div>
+            <div [hidden]="!divganar" class="col col-md-8">
+              <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-9">
+                  <span class="puntos">Has ganado {{dinero}} € !!</span>
+                  <button class="btn btn-info continuar" (click)="chngDivGanar()">continuar</button>
+                </div>
+
+
+              </div>
+
+            </div>
+            <div [hidden]="!divperder" class="col col-md-8">
+              <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-9">
+                  <span class="puntos">Has perdido {{dinero}} € :(</span>
+                  <button class="btn btn-info continuar" (click)="chngDivPerder()">continuar</button>
+                </div>
+              </div>
+
+            </div>
+            <div [hidden]="!divperderFondos" class="col col-md-8">
+              <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-9">
+                  <span class="puntos"> Has perdido todos tus fondos :(</span>
+                  <button class="btn btn-info continuar" (click)="chngDivPerderFondos()">continuar</button>
+                </div>
+              </div>
+
+            </div>
+            <div class="col col-md-2"></div>
           </div>
-        </div>
-        <div class="row cartas">
-          <div class="col col-md-2"></div>
-          <div [hidden]="divganar || divperder || divperderFondos" class="col col-md-8">
-            <img *ngFor="let carta of cartasTiradasBanca" src="{{carta.imagen}}" alt="">
-          </div>
-          <div [hidden]="!divganar" class="col col-md-8">
-            <span class="puntos">Has ganado!!</span>
-            <button class="btn btn-info continuar" (click)="chngDivGanar()">continuar</button>
-          </div>
-          <div [hidden]="!divperder" class="col col-md-8">
-            <span class="puntos">Has perdido :(</span>
-            <button class="btn btn-info continuar" (click)="chngDivPerder()">continuar</button>
-          </div>
-          <div [hidden]="!divperderFondos" class="col col-md-8">
-            <span class="puntos"> Has perdido todos tus fondos :(</span>
-            <button class="btn btn-info continuar" (click)="chngDivPerderFondos()">continuar</button>
-          </div>
-          <div class="col col-md-2"></div>
         </div>
       </div>
-    </div>
-    <div class="row row-div">
-      <div class="col col-md-12">
-        <div class="row pedir">
-          <div class="col col-md-3">
-            <button class="btn btn-primary continuar" [disabled]="!pedirCarta" (click)="pedir()">Pedir carta</button>
-            <button [disabled]="!plantarse" class="btn btn-success continuar" (click)="juegaBanca()">Plantarse</button>
+      <div class="row">
+        <div class="col division-down col-md-12">
+          <div class="row pedir">
+            <div class="col col-md-4">
+              <button class="btn btn-primary continuar" [disabled]="!pedirCarta" (click)="pedir()">Pedir carta</button>
+              <button [disabled]="!plantarse" class="btn btn-danger continuar" (click)="juegaBanca()">Plantarse</button>
+            </div>
+            <div class="col col-md-2">
+              <span class="puntos">Puntos jugador : {{puntosJugador}}</span>
+            </div>
+            <div class="col-md-3">
+              <span class="puntos">Fondos : {{fondos}} €</span>
+              <p class="puntos">Apuesta : {{apuestaEnCurso}} €</p>
+            </div>
+            <div class="col-md-3">
+              <button [disabled]="!boolApuesta" class="btn btn-warning" (click)="apostar(10)">10€</button>
+              <button [disabled]="!boolApuesta" class="btn btn-warning" (click)="apostar(20)">20€</button>
+              <button [disabled]="!boolApuesta" class="btn btn-warning" (click)="apostar(30)">30€</button>
+              <button [disabled]="!boolApuesta" class="btn btn-warning" (click)="apostar(50)">50€</button>
+            </div>
           </div>
-          <div class="col col-md-2">
-            <span class="puntos">Puntos jugador : {{puntosJugador}}</span>
+          <div class="row cartas">
+            <div class="col col-md-2"></div>
+            <div class="col col-md-8">
+              <img *ngFor="let carta of cartasTiradasJugador" src="{{carta.imagen}}" alt="">
+            </div>
+            <div class="col col-md-2"></div>
           </div>
-          <div class="col-md-3">
-            <span class="puntos">Fondos : {{fondos}} €</span>
-            <p class="puntos">Apuesta : {{apuestaEnCurso}} €</p>
-          </div>
-          <div class="col-md-4">
-            <button [disabled]="!boolApuesta" class="btn btn-warning" (click)="apostar(10)">10€</button>
-            <button [disabled]="!boolApuesta" class="btn btn-warning" (click)="apostar(20)">20€</button>
-            <button [disabled]="!boolApuesta" class="btn btn-warning" (click)="apostar(30)">30€</button>
-            <button [disabled]="!boolApuesta" class="btn btn-warning" (click)="apostar(50)">50€</button>
-          </div>
-        </div>
-        <div class="row cartas">
-          <div class="col col-md-2"></div>
-          <div class="col col-md-8">
-            <img *ngFor="let carta of cartasTiradasJugador" src="{{carta.imagen}}" alt="">
-          </div>
-          <div class="col col-md-2"></div>
         </div>
       </div>
     </div>
