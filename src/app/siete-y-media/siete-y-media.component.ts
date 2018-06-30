@@ -49,6 +49,10 @@ export class SieteYMediaComponent implements OnInit {
     this.apuestaEnCurso += parseInt(this.apuesta);
     console.log(this.apuesta);
     this.fondos -= parseInt(this.apuesta);
+
+    if (this.fondos <= 0){
+      this.boolApuesta = false;
+    }
   }
 
   pedir() {
@@ -95,6 +99,7 @@ export class SieteYMediaComponent implements OnInit {
     setTimeout(() => {
 
       if (this.fondos <= 0) {
+
         alert('has perdido todos tus fondos');
         this.fondos = 100;
         this.puntosJugador = 0;
@@ -110,6 +115,7 @@ export class SieteYMediaComponent implements OnInit {
         this.boolApuesta = true;
         this.apuestaEnCurso = 0;
       } else {
+
         alert('has perdido');
         this.puntosJugador = 0;
         this.puntosBanca = 0;
@@ -146,6 +152,7 @@ export class SieteYMediaComponent implements OnInit {
       this.boolApuesta = true;
       this.fondos += (this.apuestaEnCurso * 2);
       this.apuestaEnCurso = 0;
+
     }, 500);
   }
 
