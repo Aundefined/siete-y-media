@@ -57,8 +57,12 @@ export class SieteYMediaComponent implements OnInit {
     }
     // Incluimos la carta en el array que nos sirve para pintarlas en pantalla.
     this.cartasTiradasJugador.push(this.carta);
-    // Sumamos el valor de la carta al total de puntos del jugador.
-    this.puntosJugador += this.carta.valor;
+    // Sumamos el valor de la carta al total de puntos del jugador.Usamos un setTimeout para que se pinte
+    // la carta un poco antes de que se sumen los puntos.
+    setTimeout(() => {
+      this.puntosJugador += this.carta.valor;
+    }, 500);
+
   }
 
   // Función para efectuar las apuestas.
@@ -148,16 +152,20 @@ export class SieteYMediaComponent implements OnInit {
     this.carta = this.mazo.pop();
     // Incluimos esta carta en el array que nos sirve para pintarlas en pantalla.
     this.cartasTiradasJugador.push(this.carta);
-    // Sumamos el valor de la carta al total de puntos del jugador.
-    this.puntosJugador += this.carta.valor;
-    // Si pasamos 7.5 puntos,perdemos.
-    if (this.puntosJugador > 7.5) {
-      this.perder();
-    }
-    // Si tenemos 7.5 puntos,juega la banca automáticamente.
-    if (this.puntosJugador == 7.5) {
-      this.juegaBanca();
-    }
+    // Usamos setTimeout para que los puntos del jugador se actualicen después de pintar la carta.
+    setTimeout(() => {
+      // Sumamos el valor de la carta al total de puntos del jugador.
+      this.puntosJugador += this.carta.valor;
+      // Si pasamos 7.5 puntos,perdemos.
+      if (this.puntosJugador > 7.5) {
+        this.perder();
+      }
+      // Si tenemos 7.5 puntos,juega la banca automáticamente.
+      if (this.puntosJugador == 7.5) {
+        this.juegaBanca();
+      }
+    }, 500);
+
   }
 
   // Función que inicia el juego de la banca.
@@ -178,27 +186,33 @@ export class SieteYMediaComponent implements OnInit {
     this.carta = this.mazo.pop();
     // Incluimos esta carta en el array que nos sirve para pintarlas en pantalla.
     this.cartasTiradasBanca.push(this.carta);
-    // Sumamos el valor de la carta al total de puntos de la banca.
-    this.puntosBanca += this.carta.valor;
-    // Evaluamos los puntos de la banca:
-    // Si supera al jugador y tiene 7.5 puntos o menos,el jugador pierde.
-    if (this.puntosBanca > this.puntosJugador && this.puntosBanca <= 7.5) {
-      // Con la función stop() paramos el setInterval que hace jugar a la banca.
-      this.stop();
-      // LLamada a la función que termina la mano o la partida si el jugador pierde.
-      this.perder();
-    }
-    // Si supera al jugador y tiene mas de 7.5 puntos,el jugador gana.
-    else if (this.puntosBanca > this.puntosJugador && this.puntosBanca > 7.5) {
-      this.stop();
-      // Llamada a la función que termina la mano si el jugador la gana.
-      this.ganar();
-    }
-    // Si tiene los mismos puntos que el jugador,el jugador pierde.
-    else if (this.puntosBanca == this.puntosJugador) {
-      this.stop();
-      this.perder();
-    }
+   // Usamos setTimeout para que los puntos de la banca se actualicen después de pintar la carta.
+    setTimeout(() => {
+       // Sumamos el valor de la carta al total de puntos de la banca.
+      this.puntosBanca += this.carta.valor;
+      // Evaluamos los puntos de la banca:
+      // Si supera al jugador y tiene 7.5 puntos o menos,el jugador pierde.
+      if (this.puntosBanca > this.puntosJugador && this.puntosBanca <= 7.5) {
+        // Con la función stop() paramos el setInterval que hace jugar a la banca.
+        this.stop();
+        // LLamada a la función que termina la mano o la partida si el jugador pierde.
+        this.perder();
+      }
+      // Si supera al jugador y tiene mas de 7.5 puntos,el jugador gana.
+      else if (this.puntosBanca > this.puntosJugador && this.puntosBanca > 7.5) {
+        this.stop();
+        // Llamada a la función que termina la mano si el jugador la gana.
+        this.ganar();
+      }
+      // Si tiene los mismos puntos que el jugador,el jugador pierde.
+      else if (this.puntosBanca == this.puntosJugador) {
+        this.stop();
+        this.perder();
+      }
+
+    }, 500);
+
+
   }
 
   // Función que determina el comportamiento del programa en caso de que pierda el jugador.
@@ -250,7 +264,7 @@ export class SieteYMediaComponent implements OnInit {
         // Mostramos el div que contiene el texto que informa al jugador que ha perdido la mano.
         this.divperder = true;
       }
-    }, 1500);
+    }, 1000);
 
   }
 
@@ -276,7 +290,7 @@ export class SieteYMediaComponent implements OnInit {
       this.apuestaEnCurso = 0;
       // Mostramos el div que contiene el texto que informa al jugador que ha ganado la mano.
       this.divganar = true;
-    }, 1500);
+    }, 1000);
   }
 
   // Funciónes para los botones 'continuar' que aparecen cuando termina una mano:
