@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MazoService} from './_servicios/mazo.service'
 
+import { MazoService} from './_servicios/mazo.service'
 
 import { AppComponent } from './app.component';
 import { SieteYMediaComponent } from './siete-y-media/siete-y-media.component';

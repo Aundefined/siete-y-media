@@ -203,10 +203,10 @@ export class SieteYMediaComponent implements OnInit {
 
   // Función que determina el comportamiento del programa en caso de que pierda el jugador.
   perder() {
-    // Reiniciamos los botones.
+    // Deshabilitamos los botones.
     this.plantarse = false;
     this.pedirCarta = false;
-    this.boolApuesta = true;
+    this.boolApuesta = false;
     // Uso del setTimeout para poder ver las cartas antes de que se active la función.
     setTimeout(() => {
       // Evaluamos si le quedan fondos al jugador.
