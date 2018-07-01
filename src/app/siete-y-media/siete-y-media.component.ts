@@ -70,6 +70,7 @@ export class SieteYMediaComponent implements OnInit {
       case 10:
         // Comprobamos que los fondos son suficientes para realizar la apuesta.
         if (this.fondos >= 10) {
+          // Hablilitamos el botón de plantarse.
           this.plantarse = true;
           // Habilitmaos el botón de pedir carta.
           this.pedirCarta = true;
