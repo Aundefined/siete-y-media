@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
 import { MazoService } from '../_servicios/mazo.service';
-
 import { Cartas } from '../_modelos/cartas';
 
 
@@ -29,7 +27,7 @@ export class SieteYMediaComponent implements OnInit {
   apuestaEnCurso: number = 0;
   dinero: number = 0;
   apuesta: number;
-
+  // Variable en la que guardammos la función del setInterval.
   inter: any;
   // Booleanos para habilitar/deshabilitar botones y mostrar/ocultar divs con texto.
   plantarse: boolean = false;
@@ -37,7 +35,7 @@ export class SieteYMediaComponent implements OnInit {
   boolApuesta: boolean = true;
   divganar: boolean = false;
   divperder: boolean = false;
-  divperderfondos: boolean = false;
+  divperderFondos: boolean = false;
 
   // Realizamos una inyección de dependencia ya que necesitaremos las funciones del servicio MazoService.
   constructor(private mazoService: MazoService) { }
@@ -46,14 +44,33 @@ export class SieteYMediaComponent implements OnInit {
     // Al cargar la página, obtenemos el mazo y lo mezclamos.
     this.mazo = this.mazoService.getMazo();
     this.mazoService.shuffle(this.mazo);
+    // Repartimos las cartas.
+    this.inicio();
   }
+
+  inicio() {
+    //Extraemos una carta del array.
+    this.carta = this.mazo.pop();
+    // Con este bucle evitamos poder perder la mano con la primera carta.
+    while (this.carta.valor > 7) {
+      this.carta = this.mazo.pop();
+    }
+    // Incluimos la carta en el array que nos sirve para pintarlas en pantalla.
+    this.cartasTiradasJugador.push(this.carta);
+    // Sumamos el valor de la carta al total de puntos del jugador.
+    this.puntosJugador += this.carta.valor;
+  }
+
   // Función para efectuar las apuestas.
   apostar(value) {
+    // Una vez pulsado el botón, lo deshabilitamos.
+    this.boolApuesta = false;
     // Evaluamos el valor de la apuesto con un switch.
     switch (value) {
       case 10:
         // Comprobamos que los fondos son suficientes para realizar la apuesta.
         if (this.fondos >= 10) {
+          this.plantarse = true;
           // Habilitmaos el botón de pedir carta.
           this.pedirCarta = true;
           // Asignamos el valor de la apuesta.
@@ -62,69 +79,70 @@ export class SieteYMediaComponent implements OnInit {
           this.apuestaEnCurso += this.apuesta;
           // Restamos el valor de la apuesta a los fondos del jugador.
           this.fondos -= this.apuesta;
-          // Deshabilitamos el botón de plantarse porque despúes de apostar hay que pedir carta obligatoriamente.
-          this.plantarse = false;
-          // Deshabilitamos los botones de apuesta si no quedan fondos.
-          if (this.fondos == 0) {
-            this.boolApuesta = false;
-          }
           // Si los fondos no son suficientes,no se puede realizar la apuesta.
         } else {
           alert('Fondos insuficientes');
+          this.boolApuesta = true;
         }
 
         break;
 
       case 20:
         if (this.fondos >= 20) {
+          this.plantarse = true;
           this.pedirCarta = true;
           this.apuesta = 20;
           this.apuestaEnCurso += this.apuesta;
           this.fondos -= this.apuesta;
-          this.plantarse = false;
-          if (this.fondos == 0) {
-            this.boolApuesta = false;
-          }
         } else {
           alert('Fondos insuficientes');
+          this.boolApuesta = true;
         }
         break;
 
       case 30:
         if (this.fondos >= 30) {
+          this.plantarse = true;
           this.pedirCarta = true;
           this.apuesta = 30;
           this.apuestaEnCurso += this.apuesta;
           this.fondos -= this.apuesta;
-          this.plantarse = false;
-          if (this.fondos == 0) {
-            this.boolApuesta = false;
-          }
         } else {
           alert('Fondos insuficientes');
+          this.boolApuesta = true;
+        }
+        break;
+
+      case 40:
+        if (this.fondos >= 40) {
+          this.plantarse = true;
+          this.pedirCarta = true;
+          this.apuesta = 40;
+          this.apuestaEnCurso += this.apuesta;
+          this.fondos -= this.apuesta;
+        } else {
+          alert('fondos insuficientes');
+          this.boolApuesta = true;
         }
         break;
 
       case 50:
         if (this.fondos >= 50) {
+          this.plantarse = true;
           this.pedirCarta = true;
           this.apuesta = 50;
           this.apuestaEnCurso += this.apuesta;
           this.fondos -= this.apuesta;
-          this.plantarse = false;
-          if (this.fondos == 0) {
-            this.boolApuesta = false;
-          }
         } else {
           alert('fondos insuficientes');
+          this.boolApuesta = true;
         }
         break;
     }
   }
+
   // Función para pedir carta
   pedir() {
-    // Activamos el botón de plantarse.
-    this.plantarse = true;
     // Extraemos una carta del mazo.
     this.carta = this.mazo.pop();
     // Incluimos esta carta en el array que nos sirve para pintarlas en pantalla.
@@ -140,17 +158,19 @@ export class SieteYMediaComponent implements OnInit {
       this.juegaBanca();
     }
   }
+
   // Función que inicia el juego de la banca.
   juegaBanca() {
     // Deshabilitamos todos los botones.
     this.plantarse = false;
     this.pedirCarta = false;
     this.boolApuesta = false;
-    // Hacemos jugar la máquina cada 1500ms.
+    // Repartimos una carta a la banca cada 1500ms.
     this.inter = setInterval(() => {
       this.start();
     }, 1500);
   }
+
   // Función que hace jugar a la banca.
   start() {
     // Extraemos una carta del mazo.
@@ -179,18 +199,18 @@ export class SieteYMediaComponent implements OnInit {
       this.perder();
     }
   }
+
   // Función que determina el comportamiento del programa en caso de que pierda el jugador.
   perder() {
-    // Deshabilitamos todos los botones.
+    // Reiniciamos los botones.
     this.plantarse = false;
     this.pedirCarta = false;
-    this.boolApuesta = false;
+    this.boolApuesta = true;
     // Uso del setTimeout para poder ver las cartas antes de que se active la función.
     setTimeout(() => {
       // Evaluamos si le quedan fondos al jugador.
       // Si no le quedan,se acaba la partida y se reinician los fondos.
-      // Si le quedan termina la mano y el jugador continua la partida con los fondos que le queden.
-      if (this.fondos <= 0) {
+      if (this.fondos == 0) {
         // Reseteo de los fondos.
         this.fondos = 100;
         // Reseteo de los puntos.
@@ -211,8 +231,8 @@ export class SieteYMediaComponent implements OnInit {
         // Reseteo de la apuesta en curso.
         this.apuestaEnCurso = 0;
         // Mostramos el div que contiene el texto que informa al jugador que no le quedan fondos.
-        this.divperderfondos = true;
-
+        this.divperderFondos = true;
+        // Si quedan fondos termina la mano y el jugador continua la partida con los fondos que le queden.
       } else {
         this.puntosJugador = 0;
         this.puntosBanca = 0;
@@ -232,6 +252,7 @@ export class SieteYMediaComponent implements OnInit {
     }, 1500);
 
   }
+
   // Función que determina el comportamiento del programa en caso de que gane el jugador.
   ganar() {
     this.plantarse = false;
@@ -256,31 +277,38 @@ export class SieteYMediaComponent implements OnInit {
       this.divganar = true;
     }, 1500);
   }
-  // Funciónes para los botones 'continuar' que aparecen cuando termina una mano.
-  // Deshabilitamos el texto que informa al jugador de que ha ganado y reseteamos los botones
-  // de perdir,plantarse y apostar.
+
+  // Funciónes para los botones 'continuar' que aparecen cuando termina una mano:
+  // Ocultamos el texto que informa al jugador de que ha ganado, reseteamos los botones
+  // de pedir,plantarse y apostar y repartimos una carta.
   chngDivGanar() {
     this.divganar = false;
     this.plantarse = false;
     this.pedirCarta = false;
     this.boolApuesta = true;
+    this.inicio();
   }
-  // Deshabilitamos el texto que informa al jugador de que ha perdido y reseteamos los botones
-  // de perdir,plantarse y apostar.
+
+  // Ocultamos el texto que informa al jugador de que ha perdido, reseteamos los botones
+  // de pedir,plantarse y apostar y repartimos una carta.
   chngDivPerder() {
     this.divperder = false;
     this.plantarse = false;
     this.pedirCarta = false;
     this.boolApuesta = true;
+    this.inicio();
   }
-  // Deshabilitamos el texto que informa al jugador de que no le quedan fondos y reseteamos los botones
-  // de perdir,plantarse y apostar.
-  chngDivPerderfondos() {
-    this.divperderfondos = false;
+
+  // Ocultamos el texto que informa al jugador de que ha perdido sus fondos, reseteamos los botones
+  // de pedir,plantarse y apostar y repartimos una carta.
+  chngDivPerderFondos() {
+    this.divperderFondos = false;
     this.plantarse = false;
     this.pedirCarta = false;
     this.boolApuesta = true;
+    this.inicio();
   }
+
   // Función que para el juego de la máquina.
   stop() {
     clearInterval(this.inter);

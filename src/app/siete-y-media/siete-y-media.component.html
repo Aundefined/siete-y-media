@@ -25,10 +25,7 @@
                   <span class="puntos">Has ganado {{dinero}} € !!</span>
                   <button class="btn btn-info continuar" (click)="chngDivGanar()">continuar</button>
                 </div>
-
-
               </div>
-
             </div>
             <div [hidden]="!divperder" class="col col-md-8">
               <div class="row">
@@ -38,7 +35,6 @@
                   <button class="btn btn-info continuar" (click)="chngDivPerder()">continuar</button>
                 </div>
               </div>
-
             </div>
             <div [hidden]="!divperderFondos" class="col col-md-8">
               <div class="row">
@@ -64,14 +60,15 @@
             <div class="col col-md-2">
               <span class="puntos">Puntos jugador : {{puntosJugador}}</span>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
               <span class="puntos">Fondos : {{fondos}} €</span>
               <p class="puntos">Apuesta : {{apuestaEnCurso}} €</p>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <button [disabled]="!boolApuesta" class="btn btn-warning" (click)="apostar(10)">10€</button>
               <button [disabled]="!boolApuesta" class="btn btn-warning" (click)="apostar(20)">20€</button>
               <button [disabled]="!boolApuesta" class="btn btn-warning" (click)="apostar(30)">30€</button>
+              <button [disabled]="!boolApuesta" class="btn btn-warning" (click)="apostar(40)">40€</button>
               <button [disabled]="!boolApuesta" class="btn btn-warning" (click)="apostar(50)">50€</button>
             </div>
           </div>
