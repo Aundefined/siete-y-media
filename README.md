@@ -20,6 +20,8 @@ En /src/app encontramos :
 
 #Desarrollo del juego
 
+*En el juego original la primera carta se reparte boca abajo.Al ser muy complicado reproducir este comportamiento, se ha optado por incluir un sistema que impide que la primera carta repartida sea un 8 o un 9,ya que haría perder al jugador nada mas empezar (siete-y-media.ts,línea 54).
+
 Al inicar el juego se le reparte una carta al jugador.Posteriormente tendrá que realizar una apuesta.Una vez hecha
 podrá pedir cuantas cartas como desee para intentar acercarse a 7.5 puntos, o plantarse para que juegue la banca.
 
@@ -36,6 +38,7 @@ Cada vez que apueste se le descontará de sus fondos la cantidad apostada.
 Si pierde la mano pierde el dinero apostado.
 Si gana se añadirá a sus fondos el doble de la cantidad apostada.
 Si se queda sin fondos pierde la partida y se reinica el juego.
+
 
 
 
